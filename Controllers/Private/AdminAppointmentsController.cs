@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using SalonBooking.Api.DTOs.Appointments;
 using SalonBooking.Api.Services.Interfaces;
 
-namespace SalonBooking.Api.Controllers;
+namespace SalonBooking.Api.Controllers.Private;
 
 [ApiController]
 [Authorize]
-[Route("api/admin/appointments")]
+[Route("api/private/appointments")]
 public class AdminAppointmentsController : ControllerBase
 {
     private readonly IAppointmentService _appointmentService;

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using SalonBooking.Api.DTOs.Auth;
 using SalonBooking.Api.Services.Interfaces;
 
-namespace SalonBooking.Api.Controllers;
+namespace SalonBooking.Api.Controllers.Private;
 
 [ApiController]
 [Route("api/auth")]

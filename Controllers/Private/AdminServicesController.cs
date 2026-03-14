@@ -3,27 +3,27 @@ using Microsoft.AspNetCore.Mvc;
 using SalonBooking.Api.DTOs.Services;
 using SalonBooking.Api.Services.Interfaces;
 
-namespace SalonBooking.Api.Controllers;
+namespace SalonBooking.Api.Controllers.Private;
 
 [ApiController]
-[Route("api/services")]
-public class ServicesController : ControllerBase
+[Authorize]
+[Route("api/private/services")]
+public class AdminServicesController : ControllerBase
 {
     private readonly IServiceService _serviceService;
 
-    public ServicesController(IServiceService serviceService)
+    public AdminServicesController(IServiceService serviceService)
     {
         _serviceService = serviceService;
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll([FromQuery] bool includeInactive = false)
+    public async Task<IActionResult> GetAll([FromQuery] bool includeInactive = true)
     {
         var result = await _serviceService.GetAllAsync(includeInactive);
         return Ok(result);
     }
 
-    [Authorize]
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateServiceRequest request)
     {
@@ -31,7 +31,6 @@ public class ServicesController : ControllerBase
         return Ok(result);
     }
 
-    [Authorize]
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, [FromBody] UpdateServiceRequest request)
     {

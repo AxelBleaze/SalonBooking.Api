@@ -2,16 +2,16 @@ using Microsoft.AspNetCore.Mvc;
 using SalonBooking.Api.DTOs.Appointments;
 using SalonBooking.Api.Services.Interfaces;
 
-namespace SalonBooking.Api.Controllers;
+namespace SalonBooking.Api.Controllers.Public;
 
 [ApiController]
-[Route("api/appointments")]
-public class AppointmentsController : ControllerBase
+[Route("api/public/appointments")]
+public class PublicAppointmentsController : ControllerBase
 {
     private readonly IAppointmentService _appointmentService;
     private readonly IAvailabilityService _availabilityService;
 
-    public AppointmentsController(
+    public PublicAppointmentsController(
         IAppointmentService appointmentService,
         IAvailabilityService availabilityService)
     {
@@ -30,6 +30,10 @@ public class AppointmentsController : ControllerBase
     public async Task<IActionResult> Create([FromBody] CreateAppointmentRequest request)
     {
         var id = await _appointmentService.CreateAppointmentAsync(request);
-        return Ok(new { appointmentId = id, message = "Reserva creada correctamente." });
+        return Ok(new
+        {
+            appointmentId = id,
+            message = "Reserva creada correctamente."
+        });
     }
 }
