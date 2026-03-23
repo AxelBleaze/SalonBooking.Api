@@ -91,8 +91,7 @@ public class AppointmentService : IAppointmentService
             client = new ClientEntity
             {
                 FullName = request.FullName,
-                Phone = request.Phone,
-                Email = request.Email
+                Phone = request.Phone
             };
 
             _context.Clients.Add(client);
@@ -101,7 +100,6 @@ public class AppointmentService : IAppointmentService
         else
         {
             client.FullName = request.FullName;
-            client.Email = request.Email;
         }
 
         var appointment = new AppointmentEntity
@@ -179,6 +177,30 @@ public class AppointmentService : IAppointmentService
         await _context.SaveChangesAsync();
     }
 
+    public async Task<AppointmentListItemDto> GetAppointmentByIdAsync(int appointmentId)
+    {
+        var appointment = await _context.Appointments
+            .Include(x => x.Client)
+            .Include(x => x.Service)
+            .Where(x => x.Id == appointmentId)
+            .Select(x => new AppointmentListItemDto
+            {
+                Id = x.Id,
+                ClientName = x.Client.FullName,
+                ClientPhone = x.Client.Phone,
+                ServiceName = x.Service.Name,
+                StartAt = x.StartAt,
+                EndAt = x.EndAt,
+                Status = x.Status,
+                Notes = x.Notes,
+                CancelReason = x.CancelReason
+            })
+            .FirstOrDefaultAsync()
+            ?? throw new Exception("Turno no encontrado.");
+
+        return appointment;
+    }
+
     public async Task<List<AppointmentListItemDto>> GetAppointmentsAsync(int? status, DateOnly? date)
     {
         var query = _context.Appointments
@@ -204,7 +226,6 @@ public class AppointmentService : IAppointmentService
                 Id = x.Id,
                 ClientName = x.Client.FullName,
                 ClientPhone = x.Client.Phone,
-                ClientEmail = x.Client.Email,
                 ServiceName = x.Service.Name,
                 StartAt = x.StartAt,
                 EndAt = x.EndAt,

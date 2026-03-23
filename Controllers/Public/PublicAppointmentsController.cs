@@ -19,6 +19,13 @@ public class PublicAppointmentsController : ControllerBase
         _availabilityService = availabilityService;
     }
 
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var appointment = await _appointmentService.GetAppointmentByIdAsync(id);
+        return Ok(appointment);
+    }
+
     [HttpGet("availability")]
     public async Task<IActionResult> GetAvailability([FromQuery] DateOnly date, [FromQuery] int serviceId)
     {

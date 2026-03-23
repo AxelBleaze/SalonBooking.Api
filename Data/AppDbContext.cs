@@ -59,10 +59,6 @@ public class AppDbContext : DbContext
                 .HasColumnName("phone")
                 .HasMaxLength(30)
                 .IsRequired();
-
-            entity.Property(x => x.Email)
-                .HasColumnName("email")
-                .HasMaxLength(150);
         });
 
         modelBuilder.Entity<AppointmentEntity>(entity =>
