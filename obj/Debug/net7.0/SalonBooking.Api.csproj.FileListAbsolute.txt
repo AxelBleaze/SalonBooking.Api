@@ -240,9 +240,10 @@ C:\Proyectos\Manicuri\SalonBooking.Api\obj\Debug\net7.0\staticwebassets.pack.jso
 C:\Proyectos\Manicuri\SalonBooking.Api\obj\Debug\net7.0\staticwebassets.build.json
 C:\Proyectos\Manicuri\SalonBooking.Api\obj\Debug\net7.0\staticwebassets.development.json
 C:\Proyectos\Manicuri\SalonBooking.Api\obj\Debug\net7.0\scopedcss\bundle\SalonBooking.Api.styles.css
-C:\Proyectos\Manicuri\SalonBooking.Api\obj\Debug\net7.0\SalonBooking.Api.csproj.CopyComplete
 C:\Proyectos\Manicuri\SalonBooking.Api\obj\Debug\net7.0\SalonBooking.Api.dll
 C:\Proyectos\Manicuri\SalonBooking.Api\obj\Debug\net7.0\refint\SalonBooking.Api.dll
 C:\Proyectos\Manicuri\SalonBooking.Api\obj\Debug\net7.0\SalonBooking.Api.pdb
 C:\Proyectos\Manicuri\SalonBooking.Api\obj\Debug\net7.0\SalonBooking.Api.genruntimeconfig.cache
 C:\Proyectos\Manicuri\SalonBooking.Api\obj\Debug\net7.0\ref\SalonBooking.Api.dll
+C:\Proyectos\Manicuri\SalonBooking.Api\obj\Debug\net7.0\SalonBooking.Api.sourcelink.json
+C:\Proyectos\Manicuri\SalonBooking.Api\obj\Debug\net7.0\SalonBoo.7AA996C0.Up2Date

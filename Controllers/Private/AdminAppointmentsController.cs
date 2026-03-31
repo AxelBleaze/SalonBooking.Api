@@ -24,6 +24,13 @@ public class AdminAppointmentsController : ControllerBase
         return Ok(result);
     }
 
+    [HttpGet("{id:int}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var appointment = await _appointmentService.GetAppointmentByIdAsync(id);
+        return Ok(appointment);
+    }
+
     [HttpPost("{id:int}/accept")]
     public async Task<IActionResult> Accept(int id)
     {

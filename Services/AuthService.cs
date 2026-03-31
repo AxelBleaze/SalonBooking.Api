@@ -17,7 +17,7 @@ public class AuthService : IAuthService
         _jwtTokenGenerator = jwtTokenGenerator;
     }
 
-    public async Task<LoginResponse> LoginAsync(LoginRequest request)
+    public async Task<string> LoginAsync(LoginRequest request)
     {
         var user = await _context.AdminUsers
             .FirstOrDefaultAsync(x => x.Username == request.Username);
@@ -25,9 +25,6 @@ public class AuthService : IAuthService
         if (user == null || !PasswordHasher.Verify(request.Password, user.PasswordHash))
             throw new Exception("Credenciales inválidas.");
 
-        return new LoginResponse
-        {
-            Token = _jwtTokenGenerator.Generate(user.Username)
-        };
+        return _jwtTokenGenerator.Generate(user.Username);
     }
 }

@@ -32,6 +32,25 @@ public class ScheduleService : IScheduleService
             .ToListAsync();
     }
 
+    public async Task<WorkingTimeBlockDto> GetBlockByIdAsync(int id)
+    {
+        var block = await _context.WorkingTimeBlocks
+            .Where(x => x.Id == id)
+            .Select(x => new WorkingTimeBlockDto
+            {
+                Id = x.Id,
+                DayOfWeek = x.DayOfWeek,
+                BlockNumber = x.BlockNumber,
+                StartTime = x.StartTime.ToString("HH:mm"),
+                EndTime = x.EndTime.ToString("HH:mm"),
+                IsEnabled = x.IsEnabled
+            })
+            .FirstOrDefaultAsync()
+            ?? throw new Exception("Bloque horario no encontrado.");
+
+        return block;
+    }
+
     public async Task<List<WorkingTimeBlockDto>> GetBlocksByDayAsync(DayOfWeek dayOfWeek)
     {
         return await _context.WorkingTimeBlocks

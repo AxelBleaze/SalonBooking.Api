@@ -24,6 +24,13 @@ public class AdminScheduleController : ControllerBase
         return Ok(result);
     }
 
+    [HttpGet("blocks/id/{id:int}")]
+    public async Task<IActionResult> GetBlockById(int id)
+    {
+        var result = await _scheduleService.GetBlockByIdAsync(id);
+        return Ok(result);
+    }
+
     [HttpGet("blocks/{dayOfWeek:int}")]
     public async Task<IActionResult> GetBlocksByDay(int dayOfWeek)
     {

@@ -35,6 +35,24 @@ public class ServiceService : IServiceService
             .ToListAsync();
     }
 
+    public async Task<ServiceDto> GetByIdAsync(int id)
+    {
+        var service = await _context.Services
+            .Where(x => x.Id == id)
+            .Select(x => new ServiceDto
+            {
+                Id = x.Id,
+                Name = x.Name,
+                DurationMinutes = x.DurationMinutes,
+                Price = x.Price,
+                IsActive = x.IsActive
+            })
+            .FirstOrDefaultAsync()
+            ?? throw new Exception("Servicio no encontrado.");
+
+        return service;
+    }
+
     public async Task<ServiceDto> CreateAsync(CreateServiceRequest request)
     {
         var entity = new ServiceEntity
